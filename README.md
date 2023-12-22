@@ -1,22 +1,22 @@
-# Polarity LogScale Integration
+# Polarity Falcon LogScale Integration
 
 CrowdStrike Falcon LogScale is an AI-native SIEM and log management platform, offering real-time threat detection.
 
-Polarity's LogScale integration allows a user to connect and search a LogScale instance with a customized search string.
+Polarity's Falcon LogScale integration allows a user to connect and search a Falcon LogScale instance with a customized search string.
 
 To learn more about LogScale, visit the [official website](https://www.crowdstrike.com/products/next-gen-siem/falcon-logscale/).
 
 <img src="images/overlay.png" width="50%">
 
-## LogScale Integration Options
+## Falcon LogScale Integration Options
 
-### LogScale URL
+### Falcon LogScale URL
 
-The base URL for the LogScale instance including the schema (i.e., https://)
+The base URL for the Falcon LogScale instance including the schema (i.e., https://)
 
 ### Repositories
 
-A comma delimited list of LogScale repositories with the associated API tokens. This the list of repositories that will be queried in the LogScale instance. The list is a string in this format: repository_1:token,repository_2:token.
+A comma delimited list of Falcon LogScale repositories with the associated API tokens. This the list of repositories that will be queried in the Falcon LogScale instance. The list is a string in this format: repository_1:token,repository_2:token.
 
 ### Search Query
 

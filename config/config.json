@@ -1,6 +1,7 @@
 {
   "name": "Falcon-LogScale",
   "acronym": "LSC",
+  "polarityIntegrationUuid": "02797f70-a0d1-11ee-aab3-238e7dd6d5b7",
   "description": "Falcon LogScale is a log management platform that provides real-time log analysis, search, and visualization.",
   "entityTypes": ["IPv4", "IPv6", "hash", "email", "domain", "cve"],
   "styles": ["./styles/styles.less"],

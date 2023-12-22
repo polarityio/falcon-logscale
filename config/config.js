@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'LogScale',
+  name: 'Falcon-LogScale',
   acronym: 'LSC',
-  description: `LogScale is a log management platform that provides real-time log analysis, search, and visualization.`,
+  description: `Falcon LogScale is a log management platform that provides real-time log analysis, search, and visualization.`,
   entityTypes: ['IPv4', 'IPv6', 'hash', 'email', 'domain', 'cve'],
   styles: ['./styles/styles.less'],
   defaultColor: 'light-blue',
@@ -26,9 +26,9 @@ module.exports = {
   options: [
     {
       key: 'url',
-      name: 'LogScale URL',
+      name: 'Flacon LogScale URL',
       description:
-        'The base URL for the LogScale API including the schema (i.e., https://)',
+        'The base URL for the Falcon LogScale API including the schema (i.e., https://)',
       default: '',
       type: 'text',
       userCanEdit: false,
@@ -36,9 +36,9 @@ module.exports = {
     },
     {
       key: 'repositories',
-      name: 'Data Sources',
+      name: 'Repositories',
       description:
-        'A comma delimited list of LogScale repositories to query.  The default is all repositories.',
+        'A comma delimited list of Falcon LogScale repositories with the associated API tokens. This the list of repositories that will be queried in the Falcon LogScale instance. The list is a string in this format: repository_1:token,repository_2:token.',
       default: '',
       type: 'password',
       userCanEdit: false,
@@ -47,7 +47,8 @@ module.exports = {
     {
       key: 'searchQuery',
       name: 'LogScale Query',
-      description: 'The query to run against LogScale.',
+      description:
+        'The query string that will be used to get log data from across the repositories that were entered in the "Repositories" user option. The defaul is: "{{ENTITY}}" | tail(10), this will return the 10 latest logs.',
       default: '"{{ENTITY}}" | tail(10)',
       type: 'text',
       userCanEdit: false,
@@ -56,8 +57,7 @@ module.exports = {
     {
       key: 'searchWindow',
       name: 'Start of Search Window',
-      description:
-        'With relative time, you specify the start and end time as a relative time such as 1minute or 24hours. LogScale supports this using relative time modifiers. LogScale treats the start and end times as relative times if you specify them as strings. Defaults to 7days',
+      description: 'Earliest time to search for logs. This option defaults to 7 days.',
       default: '7days',
       type: 'text',
       userCanEdit: false,

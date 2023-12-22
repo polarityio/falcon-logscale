@@ -1,7 +1,7 @@
 {
-  "name": "LogScale",
+  "name": "Falcon-LogScale",
   "acronym": "LSC",
-  "description": "LogScale is a log management platform that provides real-time log analysis, search, and visualization.",
+  "description": "Falcon LogScale is a log management platform that provides real-time log analysis, search, and visualization.",
   "entityTypes": ["IPv4", "IPv6", "hash", "email", "domain", "cve"],
   "styles": ["./styles/styles.less"],
   "defaultColor": "light-blue",
@@ -26,8 +26,8 @@
   "options": [
     {
       "key": "url",
-      "name": "LogScale URL",
-      "description": "The base URL for the LogScale API including the schema (i.e., https://)",
+      "name": "Falcon LogScale URL",
+      "description": "The base URL for the Falcon LogScale API including the schema (i.e., https://)",
       "default": "",
       "type": "text",
       "userCanEdit": false,
@@ -35,8 +35,8 @@
     },
     {
       "key": "repositories",
-      "name": "Data Sources",
-      "description": "A comma delimited list of LogScale repositories to query.  The default is all repositories.",
+      "name": "Repositories",
+      "description": "A comma delimited list of Falcon LogScale repositories with the associated API tokens. This the list of repositories that will be queried in the Falcon LogScale instance. The list is a string in this format: repository_1:token,repository_2:token.",
       "default": "",
       "type": "password",
       "userCanEdit": false,
@@ -45,7 +45,7 @@
     {
       "key": "searchQuery",
       "name": "LogScale Query",
-      "description": "The query to run against LogScale.",
+      "description": "The query string that will be used to get log data from across the repositories that were entered in the 'Repositories' user option. The defaul is: \"{{ENTITY}}\" | tail(10), this will return the 10 latest logs.",
       "default": "\"{{ENTITY}}\" | tail(10)",
       "type": "text",
       "userCanEdit": false,
@@ -54,7 +54,7 @@
     {
       "key": "startOfSearchWindow",
       "name": "Start of Search Window",
-      "description": "Earliest time to search for logs.  Defaults to 7 days.",
+      "description": "Earliest time to search for logs. This option defaults to 7 days.",
       "default": "7days",
       "type": "text",
       "userCanEdit": false,

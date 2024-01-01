@@ -69,6 +69,8 @@ class PolarityRequest {
   }
 
   setOptions(options) {
+    const Logger = getLogger();
+    Logger.trace({ options }, 'Setting Options');
     this.options = options;
   }
   /**
@@ -79,19 +81,24 @@ class PolarityRequest {
   async request(reqOpts) {
     const Logger = getLogger();
 
+    /**
+     * NOTE: This polarity request code is used in many integrations. In this integratio, I have removed the url field from
+     * these request options, because it assumes only one base url will be used for all the requests, however this is not the case
+     * in this integration, as the token base url is differnt from the api base url.
+     */
     const requestOptionsObj = {
       method: reqOpts.method,
-      url: this.options.url + reqOpts.path,
       headers: this.headers,
       ...reqOpts
     };
 
     const { path, ...requestOptions } = requestOptionsObj;
+
     Logger.trace({ requestOptions }, 'Request Options');
 
     return new Promise((resolve, reject) => {
       this.requestWithDefaults(requestOptions, async (err, response) => {
-        Logger.trace({ err, response }, 'Request Response');
+        Logger.trace({ response }, 'Request Response');
         const statusCode = response.statusCode;
 
         if (
@@ -102,10 +109,6 @@ class PolarityRequest {
           return resolve({ ...response, requestOptions });
         }
 
-        /*
-          The MXToolBox API will return a 400 if the API key has gone over the daily rate limit. 
-          example of message from API: Over Daily Simple API Limit - 64, ApiKey: *************. Documentation available at https://mxtoolbox.com/restapi.aspx
-         */
         if (statusCode === HTTP_CODE_BAD_REQUEST_400) {
           const message = response.body.substring(0, response.body.indexOf(' - '));
 
@@ -119,7 +122,7 @@ class PolarityRequest {
 
           return reject(
             new ApiRequestError(
-              `Request Error: Or, check that the MXtoolbox URL is correct in the Polarity client user options.
+              `Request Error: Or, check that the Falcon LogScale is correct in the Polarity client user options.
                 `,
               {
                 statusCode,
@@ -161,7 +164,6 @@ class PolarityRequest {
           );
         }
 
-        //TODO: add retry logic for 500, 502, 504s
         if (
           statusCode === HTTP_CODE_SERVER_LIMIT_500 ||
           statusCode === HTTP_CODE_SERVER_LIMIT_502 ||
@@ -200,7 +202,6 @@ class PolarityRequest {
 
   async send(requestOptions) {
     const Logger = getLogger();
-    Logger.trace({ requestOptions }, 'Request Options (before request)');
     return await this.runRequestsInParallel(requestOptions);
   }
 }

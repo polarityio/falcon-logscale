@@ -6,25 +6,34 @@ Polarity's Falcon LogScale integration allows a user to connect and search a Fal
 
 To learn more about LogScale, visit the [official website](https://www.crowdstrike.com/products/next-gen-siem/falcon-logscale/).
 
-<img src="images/overlay.png" width="50%">
+<div style="display:flex; align-items: flex-start; justify-content:flex-start; align-items:flex-start; margin-bottom: 7px">
+  <img width="350" style="margin-right:7px" alt="Integration Example Fields" src="./images/example-fields.png">
+  <img width="350" alt="Integration Example Table" src="./images/example-table.png">
+</div>
+<div style="display:flex; align-items: flex-start; justify-content:flex-start; align-items:flex-start;">
+  <img width="350" style="margin-right:7px" alt="Integration Example JSON" src="./images/example-json.png">
+</div>
 
 ## Falcon LogScale Integration Options
 
+## Falcon-LogScale Integration Options
+
 ### Falcon LogScale URL
+The base URL for the Falcon LogScale Instance including the schema (i.e., https://)
 
-The base URL for the Falcon LogScale instance including the schema (i.e., https://)
+### Personal API Token
+Your Personal API Token.  Profile Icon -> Manage your account -> Personal API token
 
-### Repositories
+### Repository Names
+A comma delimited list of Falcon LogScale repositories you want to search. To view your repositories click the Falcon Icon in the upper left of the dashboard.
 
-A comma delimited list of Falcon LogScale repositories with the associated API tokens. This the list of repositories that will be queried in the Falcon LogScale instance. The list is a string in this format: repository_1:token,repository_2:token.
+### LogScale Query
+The query string that will be used to get log data from across the repositories that were entered in the 'Repositories' user option. The default is: "{{ENTITY}}" | tail(10), this will return the 10 latest logs.
 
-### Search Query
+### Start of Search Window
+How far back you wish to return logs from. #years, #months, #days, or #hours. This option defaults to `7days`.
 
-The query string that will be used to get log data from across the repositories that were entered in the "Repositories" user option. The defaul is: \"{{ENTITY}}\" | tail(10), this will return the 10 latest logs.
-
-### Start Of Search Window
-
-Earliest time to search for logs. This option defaults to 7 days. Below is a table of the accepted values and relative time units:
+Below is a table of the accepted values and relative time units:
 
 | Time Unit    | Accepted Values                       |
 | ------------ | ------------------------------------- |

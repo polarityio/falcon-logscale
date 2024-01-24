@@ -1,18 +1,20 @@
 polarity.export = PolarityComponent.extend({
   details: Ember.computed.alias('block.data.details'),
-  activeTab: {},
+  logsForAllRepositories: Ember.computed.alias('details.logsForAllRepositories'),
+  queryLink: Ember.computed.alias('details.queryLink'),
+  activeTab: 'showFields',
   readableJson: {},
   init() {
     this.makeJsonReadable();
     this._super(...arguments);
   },
   actions: {
-    changeTab: function (index, tabName) {
-      this.set(`activeTab.${index}`, tabName);
+    changeTab: function (tabName) {
+      this.set('activeTab', tabName);
     }
   },
   makeJsonReadable: function () {
-    const results = this.get('details.results');
+    const results = this.get('logsForAllRepositories');
     results.forEach((result, index) => {
       this.set(
         'readableJson.' + index,

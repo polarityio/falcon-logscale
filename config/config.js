@@ -1,16 +1,17 @@
 module.exports = {
   name: 'Falcon-LogScale',
-  acronym: 'LSC',
-  description: `Falcon LogScale is a log management platform that provides real-time log analysis, search, and visualization.`,
-  entityTypes: ['IPv4', 'IPv6', 'hash', 'email', 'domain', 'cve'],
-  styles: ['./styles/styles.less'],
+  acronym: 'FLS',
+  description:
+    'Falcon LogScale is a log management platform that provides real-time log analysis, search, and visualization.',
+  entityTypes: ['*'],
   defaultColor: 'light-blue',
+  styles: ['./client/styles.less'],
   block: {
     component: {
-      file: './components/block.js'
+      file: './client/block.js'
     },
     template: {
-      file: './templates/block.hbs'
+      file: './client/block.hbs'
     }
   },
   request: {
@@ -26,21 +27,31 @@ module.exports = {
   options: [
     {
       key: 'url',
-      name: 'Flacon LogScale URL',
+      name: 'Falcon LogScale URL',
       description:
-        'The base URL for the Falcon LogScale API including the schema (i.e., https://)',
+        'The base URL for the Falcon LogScale Instance including the schema (i.e., https://)',
       default: '',
       type: 'text',
       userCanEdit: false,
       adminOnly: true
     },
     {
-      key: 'repositories',
-      name: 'Repositories',
+      key: 'apiToken',
+      name: 'Personal API Token',
       description:
-        'A comma delimited list of Falcon LogScale repositories with the associated API tokens. This the list of repositories that will be queried in the Falcon LogScale instance. The list is a string in this format: repository_1:token,repository_2:token.',
+        'Your Personal API Token.  Profile Icon -> Manage your account -> Personal API token',
       default: '',
       type: 'password',
+      userCanEdit: false,
+      adminOnly: true
+    },
+    {
+      key: 'repositoryNames',
+      name: 'Repository Names',
+      description:
+        'A comma delimited list of Falcon LogScale repositories you want to search. To view your repositories click the Falcon Icon in the upper left of the dashboard.',
+      default: '',
+      type: 'text',
       userCanEdit: false,
       adminOnly: true
     },
@@ -48,16 +59,17 @@ module.exports = {
       key: 'searchQuery',
       name: 'LogScale Query',
       description:
-        'The query string that will be used to get log data from across the repositories that were entered in the "Repositories" user option. The defaul is: "{{ENTITY}}" | tail(10), this will return the 10 latest logs.',
+        'The query string that will be used to get log data from across the repositories that were entered in the \'Repositories\' user option. The default is: "{{ENTITY}}" | tail(10), this will return the 10 latest logs.',
       default: '"{{ENTITY}}" | tail(10)',
       type: 'text',
       userCanEdit: false,
       adminOnly: true
     },
     {
-      key: 'searchWindow',
+      key: 'startOfSearchWindow',
       name: 'Start of Search Window',
-      description: 'Earliest time to search for logs. This option defaults to 7 days.',
+      description:
+        'How far back you wish to return logs from. #years, #months, #days, or #hours. This option defaults to `7days`.',
       default: '7days',
       type: 'text',
       userCanEdit: false,
@@ -65,3 +77,4 @@ module.exports = {
     }
   ]
 };
+

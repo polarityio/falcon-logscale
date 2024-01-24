@@ -1,0 +1,48 @@
+<a href={{queryLink}}>
+  View Results in LogScale
+  {{fa-icon "external-link" fixedWidth=true class="external-icon"}}
+</a>
+<ul class="nav nav-tabs mt-2">
+  <li class="nav-item">
+    <a
+      {{action "changeTab" "showFields"}}
+      class="nav-link {{if (eq activeTab 'showFields') 'active'}}"
+    >Fields</a>
+  </li>
+  <li class="nav-item">
+    <a
+      {{action "changeTab" "showTable"}}
+      class="nav-link {{if (eq activeTab 'showTable') 'active'}}"
+    >Table</a>
+  </li>
+  <li class="nav-item">
+    <a
+      {{action "changeTab" "showJson"}}
+      class="nav-link {{if (eq activeTab 'showJson') 'active'}}"
+    >JSON</a>
+  </li>
+</ul>
+{{#each logsForAllRepositories as |logs index|}}
+  <div class="result">
+    {{#if (eq activeTab "showFields")}}
+      <div class="tab-container">
+        {{#each-in logs as |key value|}}
+          <div>
+            <span class="p-key">{{key}}:</span>
+            <span class="p-value">{{value}}</span>
+          </div>
+        {{/each-in}}
+      </div>
+    {{/if}}
+    {{#if (eq activeTab "showTable")}}
+      <div class="tab-container fields-table">
+        {{object-to-table logs "json"}}
+      </div>
+    {{/if}}
+    {{#if (eq activeTab "showJson")}}
+      <div class="tab-container json-block">
+        <pre>{{{get readableJson index}}}</pre>
+      </div>
+    {{/if}}
+  </div>
+{{/each}}

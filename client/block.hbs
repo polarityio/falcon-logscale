@@ -2,31 +2,41 @@
   View Results in LogScale
   {{fa-icon "external-link" fixedWidth=true class="external-icon"}}
 </a>
-<ul class="nav nav-tabs mt-2">
-  <li class="nav-item">
-    <a
-      {{action "changeTab" "showFields"}}
-      class="nav-link {{if (eq activeTab 'showFields') 'active'}}"
-    >Fields</a>
-  </li>
-  <li class="nav-item">
-    <a
-      {{action "changeTab" "showTable"}}
-      class="nav-link {{if (eq activeTab 'showTable') 'active'}}"
-    >Table</a>
-  </li>
-  <li class="nav-item">
-    <a
-      {{action "changeTab" "showJson"}}
-      class="nav-link {{if (eq activeTab 'showJson') 'active'}}"
-    >JSON</a>
-  </li>
-</ul>
-{{#each logsForAllRepositories as |logs index|}}
+
+{{#each logsForAllRepositories as |log index|}}
+  <ul class="nav nav-tabs mt-2">
+    <li class="nav-item">
+      <a
+        href="#"
+        {{action "changeTab" "showFields" index}}
+        class="nav-link {{if (eq log.__activeTab "showFields") "active"}}"
+      >
+        Fields
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        href="#"
+        {{action "changeTab" "showTable" index}}
+        class="nav-link {{if (eq log.__activeTab "showTable") "active"}}"
+      >
+        Table
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        href="#"
+        {{action "changeTab" "showJson" index}}
+        class="nav-link {{if (eq log.__activeTab "showJson") "active"}}"
+      >
+        JSON
+      </a>
+    </li>
+  </ul>
   <div class="result">
-    {{#if (eq activeTab "showFields")}}
+    {{#if (eq log.__activeTab "showFields")}}
       <div class="tab-container">
-        {{#each-in logs as |key value|}}
+        {{#each-in log as |key value|}}
           <div>
             <span class="p-key">{{key}}:</span>
             <span class="p-value">{{value}}</span>
@@ -34,12 +44,12 @@
         {{/each-in}}
       </div>
     {{/if}}
-    {{#if (eq activeTab "showTable")}}
+    {{#if (eq log.__activeTab "showTable")}}
       <div class="tab-container fields-table">
-        {{object-to-table logs "json"}}
+        {{object-to-table log}}
       </div>
     {{/if}}
-    {{#if (eq activeTab "showJson")}}
+    {{#if (eq log.__activeTab "showJson")}}
       <div class="tab-container json-block">
         <pre>{{{get readableJson index}}}</pre>
       </div>

@@ -2,15 +2,17 @@ polarity.export = PolarityComponent.extend({
   details: Ember.computed.alias('block.data.details'),
   logsForAllRepositories: Ember.computed.alias('details.logsForAllRepositories'),
   queryLink: Ember.computed.alias('details.queryLink'),
-  activeTab: 'showFields',
   readableJson: {},
   init() {
     this.makeJsonReadable();
     this._super(...arguments);
+    this.get('logsForAllRepositories').forEach((log, index) => {
+      this.set(`logsForAllRepositories.${index}.__activeTab`, 'showFields');
+    });
   },
   actions: {
-    changeTab: function (tabName) {
-      this.set('activeTab', tabName);
+    changeTab: function (tabName, index) {
+      this.set(`logsForAllRepositories.${index}.__activeTab`, tabName);
     }
   },
   makeJsonReadable: function () {
@@ -21,7 +23,6 @@ polarity.export = PolarityComponent.extend({
         this.syntaxHighlight(JSON.stringify(result, null, 4))
       );
     });
-    this.get('block').notifyPropertyChange('data');
   },
   syntaxHighlight(json) {
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

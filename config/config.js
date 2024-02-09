@@ -4,7 +4,8 @@ module.exports = {
   description:
     'Search Falcon LogScale data with a custom LogScale Query.',
   entityTypes: ['IPv4', 'IPv6', 'IPv4CIDR', 'MD5', 'SHA1', 'SHA256', 'email', 'domain', 'url', 'cve'],
-  defaultColor: 'light-blue',
+  onDemandOnly: true,
+  defaultColor: 'light-gray',
   styles: ['./client/styles.less'],
   block: {
     component: {

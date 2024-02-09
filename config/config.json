@@ -14,7 +14,8 @@
     "url",
     "cve"
   ],
-  "defaultColor": "light-blue",
+  "onDemandOnly": true,
+  "defaultColor": "light-gray",
   "styles": [
     "./client/styles.less"
   ],

@@ -20,7 +20,7 @@ const assembleLookupResults = (entities, logsForAllRepositories, options) =>
       options
     );
 
-    const resultsFound = some(size, resultsForThisEntity);
+    const resultsFound = some(size, get('logsForAllRepositories', resultsForThisEntity));
 
     const lookupResult = {
       entity,

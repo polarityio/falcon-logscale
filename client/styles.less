@@ -1,0 +1,78 @@
+pre {
+  background-color: #fff;
+  font-family: 'Lucida Console', Monaco, monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.external-icon{
+  font-size: 9px;
+}
+
+div.fields-table {
+  font-family: 'Lucida Console', Monaco, monospace;
+  font-size: 10px;
+  border-bottom: 2px solid gray;
+  padding-bottom: 25px;
+
+  table {
+    thead {
+      display: none;
+    }
+
+    tbody {
+      td {
+        border-bottom: 1px solid rgb(217, 217, 217);
+      }
+
+      tr:nth-child(odd) {
+        background-color: #fff;
+      }
+
+      tr:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+
+      td:first-child {
+        min-width: 35%;
+        width: 35%;
+      }
+    }
+  }
+}
+
+.tab-container {
+  margin-bottom: 20px;
+}
+
+div.json-block {
+  pre {
+    white-space: pre-wrap;
+  }
+
+  .string {
+    color: #d14;
+  }
+
+  .number {
+    color: #008080;
+  }
+
+  .boolean {
+    color: #008080;
+  }
+
+  .null {
+    color: #008080;
+  }
+
+  .key {
+    color: #333;
+  }
+}
+
+div.result {
+  margin-top: 10px;
+}

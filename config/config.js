@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'Falcon-LogScale',
+  name: 'Falcon LogScale',
   acronym: 'FLS',
   description:
-    'Falcon LogScale is a log management platform that provides real-time log analysis, search, and visualization.',
-  entityTypes: ['*'],
+    'Search Falcon LogScale data with a custom LogScale Query.',
+  entityTypes: ['IPv4', 'IPv6', 'IPv4CIDR', 'MD5', 'SHA1', 'SHA256', 'email', 'domain', 'url', 'cve'],
   defaultColor: 'light-blue',
   styles: ['./client/styles.less'],
   block: {
@@ -77,4 +77,3 @@ module.exports = {
     }
   ]
 };
-

@@ -84,5 +84,10 @@
       "adminOnly": true
     }
   ],
-  "polarityIntegrationUuid": "02797f70-a0d1-11ee-aab3-238e7dd6d5b7"
+  "polarityIntegrationUuid": "02797f70-a0d1-11ee-aab3-238e7dd6d5b7",
+  "reducer": {
+    "details": {
+      "file": "./reducers/details.json"
+    }
+  }
 }

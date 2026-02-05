@@ -1,0 +1,76 @@
+{
+  "logsForAllRepositories": [
+    {
+      "@timestamp": "2024-01-15T14:23:45.123Z",
+      "@rawstring": "Jan 15 14:23:45 webserver01 nginx: 192.168.1.100 - - [15/Jan/2024:14:23:45 +0000] \"GET /api/users HTTP/1.1\" 200 1234",
+      "#repo": "web-logs",
+      "#type": "nginx-access",
+      "host": "webserver01",
+      "client_ip": "192.168.1.100",
+      "method": "GET",
+      "path": "/api/users",
+      "status_code": 200,
+      "bytes_sent": 1234,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "response_time_ms": 45
+    },
+    {
+      "@timestamp": "2024-01-15T14:24:12.456Z",
+      "@rawstring": "2024-01-15T14:24:12.456Z | CRITICAL | security | Suspicious file execution detected",
+      "#repo": "security-events",
+      "#type": "edr-alert",
+      "severity": "critical",
+      "event_type": "process_execution",
+      "process_name": "powershell.exe",
+      "process_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "command_line": "powershell.exe -encodedCommand JGNvbW1hbmQ...",
+      "parent_process": "cmd.exe",
+      "username": "DOMAIN\\suspicious_user",
+      "computer_name": "WORKSTATION-42",
+      "file_hash_sha256": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456",
+      "threat_score": 95,
+      "mitre_tactics": ["execution", "defense-evasion"],
+      "mitre_techniques": ["T1059.001", "T1027"]
+    },
+    {
+      "@timestamp": "2024-01-15T14:25:03.789Z",
+      "@rawstring": "2024-01-15 14:25:03 firewall: DENY TCP 203.0.113.45:54321 -> 10.0.0.5:445",
+      "#repo": "network-logs",
+      "#type": "firewall-deny",
+      "action": "deny",
+      "protocol": "TCP",
+      "source_ip": "203.0.113.45",
+      "source_port": 54321,
+      "destination_ip": "10.0.0.5",
+      "destination_port": 445,
+      "direction": "inbound",
+      "rule_name": "BLOCK_SMB_EXTERNAL",
+      "interface": "eth0",
+      "bytes": 0,
+      "packets": 1,
+      "geo_country": "CN",
+      "reputation_score": 15
+    },
+    {
+      "@timestamp": "2024-01-15T14:26:30.012Z",
+      "@rawstring": "authentication success for user admin from 10.0.1.50",
+      "#repo": "auth-logs",
+      "#type": "authentication",
+      "event_category": "authentication",
+      "event_outcome": "success",
+      "username": "admin",
+      "source_ip": "10.0.1.50",
+      "destination_service": "ssh",
+      "authentication_method": "password",
+      "session_id": "sess_abc123xyz789",
+      "privilege_level": "administrator"
+    }
+  ],
+  "queryLink": "https://cloud.crowdstrike.com/humio-organization-usage/search?live=false&query=%22192.168.1.100%22%20%7C%20tail(10)&start=7days",
+  "_internal_metadata": {
+    "query_execution_time_ms": 234,
+    "repositories_searched": ["web-logs", "security-events", "network-logs", "auth-logs"],
+    "total_events_scanned": 15678234,
+    "debug_trace_id": "trace-uuid-12345"
+  }
+}
